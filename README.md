@@ -64,6 +64,36 @@ See [nestifi.money](https://nestifi.money) for more product information.
 
 ---
 
+## GitHub Best Practices
+
+- **Commits**: Write concise and meaningful commit messages. Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/):  
+  e.g., `feat: add analytics chart`, `fix: correct dashboard bug`, `docs: update readme`
+- **Pull Requests**:
+    - Open a PR for every feature/bugfix
+    - Fill out the description, reference issues, and assign reviewers if part of a team
+    - Link related issues with `fixes #`, `closes #`, etc.
+    - Keep PRs focused and avoid unrelated changes
+- **Branching**:
+    - Use descriptive, lowercase branch names:  
+      `feature/onboarding-carousel`, `bugfix/transaction-edgecase`
+    - Always branch from `main` (or `develop` if using that workflow)
+    - Delete branches once merged
+
+- **Issues**: Use GitHub Issues for bugs, questions, or feature ideas. Add clear description, steps to reproduce, and screenshots or logs if possible.
+
+- **Reviews**: Assign PRs for review, and request at least one review before merging (if collaborating).  
+  Address all review comments or discuss as needed.
+
+- **Code Standards**: Keep code modular and DRY (Don’t Repeat Yourself). Write small, focused components.
+
+- **README/Docs**: Update documentation as changes are made.
+
+- **Security**: Never commit `.env` files, secrets, or personal data.
+
+- **GitHub Actions** (optional): Set up CI/CD for lint/test/build if needed.
+
+---
+
 ## Adding Screens or Assets
 
 - Place all new PNGs/images in `/public/images/`.
