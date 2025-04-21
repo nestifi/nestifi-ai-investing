@@ -21,3 +21,10 @@ This folder holds all user-uploaded images, NestiFi app screen PNGs, icons, desi
 
 ---
 
+## Learn Section Images
+
+- credit-score.png - Image for Credit Score topic
+- compound-interest.png - Image for Compound Interest topic
+- credit-cards.png - Image for Credit Cards topic
+
+These images should be in this directory as referenced by the LearnTopic objects.

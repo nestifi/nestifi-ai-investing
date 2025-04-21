@@ -19,6 +19,10 @@ import QRCode from "./pages/QRCode";
 import HelpInfo from "./pages/HelpInfo";
 import GiftDeposit from "./pages/family/GiftDeposit";
 import DepositSuccess from "./pages/family/DepositSuccess";
+import Learn from "./pages/learn/Learn";
+import LearnArticle from "./pages/learn/LearnArticle";
+import LearnQuiz from "./pages/learn/LearnQuiz";
+import LearnComplete from "./pages/learn/LearnComplete";
 
 // Auth Pages
 import AuthSelect from "./pages/auth/AuthSelect";
@@ -77,6 +81,12 @@ const App = () => (
           <Route path="/statistics" element={<Statistics />} />
           <Route path="/qr-code" element={<QRCode />} />
           <Route path="/help/freeze" element={<HelpInfo />} />
+          
+          {/* Learn Routes */}
+          <Route path="/learn" element={<Learn />} />
+          <Route path="/learn/:topicId" element={<LearnArticle />} />
+          <Route path="/learn/:topicId/quiz" element={<LearnQuiz />} />
+          <Route path="/learn/:topicId/complete" element={<LearnComplete />} />
           
           {/* Family Routes */}
           <Route path="/family/family-circle" element={<FamilyCircle />} />
