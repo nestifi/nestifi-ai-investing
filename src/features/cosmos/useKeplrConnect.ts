@@ -1,6 +1,9 @@
 
 import { useCallback, useState } from "react";
 
+// Reference the global KeplrWindow type
+/// <reference types="src/vite-env.d.ts" />
+
 // Exposed Keplr types are not available unless using @keplr-wallet types. We'll use window.keplr as "any"
 interface UseKeplrConnectResult {
   connecting: boolean;
@@ -24,16 +27,19 @@ export function useKeplrConnect(chainId: string = "cosmoshub-4"): UseKeplrConnec
     setAccount(null);
 
     try {
-      if (!window.keplr) {
+      // Cast window to KeplrWindow to access keplr properties
+      const keplrWindow = window as KeplrWindow;
+
+      if (!keplrWindow.keplr) {
         setError("Keplr extension is not installed. Please install Keplr and refresh.");
         setConnecting(false);
         return;
       }
 
       // Enable the requested chain on Keplr (prompts user)
-      await window.keplr.enable(chainId);
+      await keplrWindow.keplr.enable(chainId);
       // Get offline signer for chain
-      const offlineSigner = window.getOfflineSigner(chainId);
+      const offlineSigner = keplrWindow.getOfflineSigner!(chainId);
       const accounts = await offlineSigner.getAccounts();
 
       if (accounts && accounts.length > 0) {
