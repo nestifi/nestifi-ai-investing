@@ -61,6 +61,13 @@ import InvestmentDetails from "./pages/family/add-member/InvestmentDetails";
 import ChildInvestmentOptions from "./pages/family/add-member/ChildInvestmentOptions";
 
 import AIAgentChat from "./pages/AIAgentChat";
+import SettingsMain from "./pages/settings/SettingsMain";
+import SettingsPersonalDetails from "./pages/settings/SettingsPersonalDetails";
+import SettingsIncomeInfo from "./pages/settings/SettingsIncomeInfo";
+import SettingsNotifications from "./pages/settings/SettingsNotifications";
+import SettingsPasscodeCurrent from "./pages/settings/SettingsPasscodeCurrent";
+import SettingsPasscodeCreate from "./pages/settings/SettingsPasscodeCreate";
+import SettingsPasscodeConfirm from "./pages/settings/SettingsPasscodeConfirm";
 
 const queryClient = new QueryClient();
 
@@ -138,6 +145,15 @@ const App = () => (
           
           {/* AI Agent Chat Route */}
           <Route path="/ai-chat" element={<AIAgentChat />} />
+          
+          {/* Settings Section */}
+          <Route path="/settings" element={<SettingsMain />} />
+          <Route path="/settings/personal-details" element={<SettingsPersonalDetails />} />
+          <Route path="/settings/income-info" element={<SettingsIncomeInfo />} />
+          <Route path="/settings/notifications" element={<SettingsNotifications />} />
+          <Route path="/settings/passcode-current" element={<SettingsPasscodeCurrent />} />
+          <Route path="/settings/passcode-create" element={<SettingsPasscodeCreate />} />
+          <Route path="/settings/passcode-confirm" element={<SettingsPasscodeConfirm />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
