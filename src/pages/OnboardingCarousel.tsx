@@ -1,12 +1,12 @@
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const slides = [
   {
     img: "/public/lovable-uploads/4b45f20d-efd0-452a-bed2-d64f6b0e2352.png",
     progress: [true, false, false],
-    title: "Build Your Child’s Future",
+    title: "Build Your Child's Future",
     desc: "Add your child's details, set financial goals, and track their journey toward a brighter future.",
     button: "Continue",
   },
@@ -14,7 +14,7 @@ const slides = [
     img: "/public/lovable-uploads/d81243aa-79d8-416b-bdec-da347204e5f1.png",
     progress: [true, true, false],
     title: "Invite Friends and Family",
-    desc: "Invite grandparents, relatives, and friends to contribute to your child’s financial journey through a personalized link",
+    desc: "Invite grandparents, relatives, and friends to contribute to your child's financial journey through a personalized link",
     button: "Continue",
   },
   {
@@ -22,7 +22,7 @@ const slides = [
     progress: [true, true, true],
     title: "Empower Your Family with Knowledge",
     desc: "Explore interactive lessons that make financial learning fun and rewarding for kids and parents.",
-    button: "Start investing",
+    button: "Get Started",
   },
 ];
 

@@ -1,19 +1,25 @@
 
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const SplashScreen = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      navigate("/onboarding");
-    }, 1600);
-    return () => clearTimeout(timer);
+    // Auto-navigate is now optional, managed by buttons
   }, [navigate]);
 
+  const handleCreateAccount = () => {
+    navigate("/onboarding");
+  };
+
+  const handleLogin = () => {
+    navigate("/auth/login");
+  };
+
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-white flex flex-col items-center justify-center px-6">
       <div className="mb-8" style={{ marginTop: "60px" }} />
       <img
         src="/public/lovable-uploads/7fd3ed6c-f5da-43fa-ae07-b8c0319e30d1.png"
@@ -27,6 +33,23 @@ const SplashScreen = () => {
       <p className="text-gray-500 text-xl text-center mb-14">
         Investing Made Simple for Families
       </p>
+      
+      <div className="w-full max-w-md space-y-4 mb-10">
+        <Button 
+          onClick={handleCreateAccount}
+          className="w-full py-6 bg-[#13ab6c]"
+        >
+          Create personal account
+        </Button>
+        
+        <Button 
+          onClick={handleLogin}
+          variant="outline"
+          className="w-full py-6 border-[#13ab6c] text-[#13ab6c]"
+        >
+          Log in
+        </Button>
+      </div>
     </div>
   );
 };
