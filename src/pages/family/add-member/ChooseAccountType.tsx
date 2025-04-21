@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Check, Users, Child } from "lucide-react";
+import { Check, Users, User } from "lucide-react";
 
 const ChooseAccountType = () => {
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ const ChooseAccountType = () => {
           >
             <CardContent className="p-4 flex items-center">
               <div className="h-10 w-10 bg-[#13ab6c]/10 rounded-full flex items-center justify-center mr-4">
-                <Child className="h-5 w-5 text-[#13ab6c]" />
+                <User className="h-5 w-5 text-[#13ab6c]" />
               </div>
               <div className="flex-1">
                 <h3 className="font-medium">Child account</h3>
