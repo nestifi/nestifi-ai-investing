@@ -42,7 +42,7 @@ import ChildProfile from "./pages/family/add-member/ChildProfile";
 import FutureGoals from "./pages/family/add-member/FutureGoals";
 import FamilyCircleManage from "./pages/family/add-member/FamilyCircleManage";
 import InvestmentDetails from "./pages/family/add-member/InvestmentDetails";
-import InvestmentOptions from "./pages/family/add-member/InvestmentOptions";
+import ChildInvestmentOptions from "./pages/family/add-member/InvestmentOptions";
 
 const queryClient = new QueryClient();
 
@@ -98,7 +98,7 @@ const App = () => (
           <Route path="/family/add-member/child-profile/:id/future-goals" element={<FutureGoals />} />
           <Route path="/family/add-member/child-profile/:id/family-circle" element={<FamilyCircleManage />} />
           <Route path="/family/add-member/child-profile/:id/investment-details" element={<InvestmentDetails />} />
-          <Route path="/family/add-member/investment-options" element={<InvestmentOptions />} />
+          <Route path="/family/add-member/investment-options" element={<ChildInvestmentOptions />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
