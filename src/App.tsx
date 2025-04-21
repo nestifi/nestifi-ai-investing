@@ -9,6 +9,8 @@ import NotFound from "./pages/NotFound";
 import CreatePasscode from "./pages/CreatePasscode";
 import FamilyCircle from "./pages/family/FamilyCircle";
 import InvestmentOptions from "./pages/family/InvestmentOptions";
+import SplashScreen from "./pages/SplashScreen";
+import OnboardingCarousel from "./pages/OnboardingCarousel";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +22,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/splash" element={<SplashScreen />} />
+          <Route path="/onboarding" element={<OnboardingCarousel />} />
+          <Route path="/auth/select" element={<div className="min-h-screen flex items-center justify-center">Auth select page (to be implemented)</div>} />
           <Route path="/create-passcode" element={<CreatePasscode />} />
           <Route path="/family/family-circle" element={<FamilyCircle />} />
           <Route path="/family/investment-options" element={<InvestmentOptions />} />
