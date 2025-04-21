@@ -1,8 +1,20 @@
 
 # /public/images
 
-This folder is intended for user-uploaded images, design PNGs, app icons, and screenshot assets used in the NestiFi project.
+This folder holds all user-uploaded images, NestiFi app screen PNGs, icons, design assets, and screenshot files.
 
-- To add a new screen PNG or asset, place the image file here and reference it in your UI code via a public path.
-- Please do not include sensitive information or personal data within these images.
+## Usage
+
+- **Adding assets**: Place PNGs or screenshots here. Do not add images elsewhere in the repo.
+- **Referencing in code**: Use a public (relative) path, for example:  
+  `/images/your-image.png`
+- **Sensitive data**: Never include images with sensitive personal information.
+
+## Best Practices
+
+- Use descriptive, lowercase filenames (`dashboard-overview.png` instead of `IMG_1200.PNG`)
+- Optimize images for web (compressed PNG or JPEG ≤ 1MB)
+- Remove unused/duplicate images regularly
+
+---
 
