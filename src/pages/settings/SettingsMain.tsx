@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LogOut, Power, Settings, User, Key, Bell, Info, Bank, Shield } from "lucide-react";
+import { LogOut, Power, Settings, User, Key, Bell, Info, Wallet, Shield } from "lucide-react";
 import DeactivateAccountModal from "./DeactivateAccountModal";
 import LogoutModal from "./LogoutModal";
 import BottomNavbar from "@/components/layout/BottomNavbar";
@@ -22,7 +22,7 @@ const menu = [
   },
   {
     title: "Bank accounts",
-    icon: Bank,
+    icon: Wallet,
     route: "/" // Not implemented
   },
   {
