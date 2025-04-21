@@ -26,6 +26,23 @@ import ChildDetailsForm from "./pages/family/add-member/ChildDetailsForm";
 import IncomeInfo from "./pages/family/add-member/IncomeInfo";
 import Agreement from "./pages/family/add-member/Agreement";
 import ConnectChoice from "./pages/family/add-member/ConnectChoice";
+import BankSecure from "./pages/family/add-member/connect-bank/BankSecure";
+import SelectInstitution from "./pages/family/add-member/connect-bank/SelectInstitution";
+import BankLogin from "./pages/family/add-member/connect-bank/BankLogin";
+import SelectAccounts from "./pages/family/add-member/connect-bank/SelectAccounts";
+import CryptoSecure from "./pages/family/add-member/connect-crypto/CryptoSecure";
+import SelectWallet from "./pages/family/add-member/connect-crypto/SelectWallet";
+import WalletLogin from "./pages/family/add-member/connect-crypto/WalletLogin";
+import SelectAssets from "./pages/family/add-member/connect-crypto/SelectAssets";
+import ConnectionSuccess from "./pages/family/add-member/ConnectionSuccess";
+import FamilyCircleIntro from "./pages/family/add-member/FamilyCircleIntro";
+import AddChildDetails from "./pages/family/add-member/AddChildDetails";
+import FamilyCircleList from "./pages/family/add-member/FamilyCircleList";
+import ChildProfile from "./pages/family/add-member/ChildProfile";
+import FutureGoals from "./pages/family/add-member/FutureGoals";
+import FamilyCircleManage from "./pages/family/add-member/FamilyCircleManage";
+import InvestmentDetails from "./pages/family/add-member/InvestmentDetails";
+import InvestmentOptions from "./pages/family/add-member/InvestmentOptions";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +74,31 @@ const App = () => (
           <Route path="/family/add-member/income-info" element={<IncomeInfo />} />
           <Route path="/family/add-member/agreement" element={<Agreement />} />
           <Route path="/family/add-member/connect-choice" element={<ConnectChoice />} />
+          
+          {/* Bank Connection Flow */}
+          <Route path="/family/add-member/connect-bank/secure" element={<BankSecure />} />
+          <Route path="/family/add-member/connect-bank/select-institution" element={<SelectInstitution />} />
+          <Route path="/family/add-member/connect-bank/login" element={<BankLogin />} />
+          <Route path="/family/add-member/connect-bank/select-accounts" element={<SelectAccounts />} />
+          
+          {/* Crypto Connection Flow */}
+          <Route path="/family/add-member/connect-crypto/secure" element={<CryptoSecure />} />
+          <Route path="/family/add-member/connect-crypto/select-wallet" element={<SelectWallet />} />
+          <Route path="/family/add-member/connect-crypto/wallet-login" element={<WalletLogin />} />
+          <Route path="/family/add-member/connect-crypto/select-assets" element={<SelectAssets />} />
+          
+          {/* Connection Success and Family Circle Management */}
+          <Route path="/family/add-member/connection-success" element={<ConnectionSuccess />} />
+          <Route path="/family/add-member/family-circle-intro" element={<FamilyCircleIntro />} />
+          <Route path="/family/add-member/add-child-details" element={<AddChildDetails />} />
+          <Route path="/family/add-member/family-circle-list" element={<FamilyCircleList />} />
+          
+          {/* Child Profile Management */}
+          <Route path="/family/add-member/child-profile/:id" element={<ChildProfile />} />
+          <Route path="/family/add-member/child-profile/:id/future-goals" element={<FutureGoals />} />
+          <Route path="/family/add-member/child-profile/:id/family-circle" element={<FamilyCircleManage />} />
+          <Route path="/family/add-member/child-profile/:id/investment-details" element={<InvestmentDetails />} />
+          <Route path="/family/add-member/investment-options" element={<InvestmentOptions />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

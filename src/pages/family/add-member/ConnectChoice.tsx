@@ -11,14 +11,14 @@ const ConnectChoice = () => {
 
   const handleContinue = () => {
     if (selectedOption === "bank") {
-      navigate("/family/add-member/connect-bank");
+      navigate("/family/add-member/connect-bank/secure");
     } else if (selectedOption === "crypto") {
-      navigate("/family/add-member/connect-crypto");
+      navigate("/family/add-member/connect-crypto/secure");
     }
   };
 
   const handleSkip = () => {
-    navigate("/family/add-member/family-circle");
+    navigate("/family/add-member/family-circle-intro");
   };
 
   return (
