@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -60,6 +59,8 @@ import FutureGoals from "./pages/family/add-member/FutureGoals";
 import FamilyCircleManage from "./pages/family/add-member/FamilyCircleManage";
 import InvestmentDetails from "./pages/family/add-member/InvestmentDetails";
 import ChildInvestmentOptions from "./pages/family/add-member/ChildInvestmentOptions";
+
+import AIAgentChat from "./pages/AIAgentChat";
 
 const queryClient = new QueryClient();
 
@@ -134,6 +135,9 @@ const App = () => (
           <Route path="/family/add-member/child-profile/:id/family-circle" element={<FamilyCircleManage />} />
           <Route path="/family/add-member/child-profile/:id/investment-details" element={<InvestmentDetails />} />
           <Route path="/family/add-member/investment-options" element={<ChildInvestmentOptions />} />
+          
+          {/* AI Agent Chat Route */}
+          <Route path="/ai-chat" element={<AIAgentChat />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
