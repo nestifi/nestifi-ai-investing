@@ -4,20 +4,33 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Main App Pages
+import Home from "./pages/Home";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import CreatePasscode from "./pages/CreatePasscode";
 import ConfirmPasscode from "./pages/ConfirmPasscode";
-import FamilyCircle from "./pages/family/FamilyCircle";
-import InvestmentOptions from "./pages/family/InvestmentOptions";
 import SplashScreen from "./pages/SplashScreen";
 import OnboardingCarousel from "./pages/OnboardingCarousel";
+import Rewards from "./pages/Rewards";
+import Statistics from "./pages/Statistics";
+import QRCode from "./pages/QRCode";
+import HelpInfo from "./pages/HelpInfo";
+import GiftDeposit from "./pages/family/GiftDeposit";
+import DepositSuccess from "./pages/family/DepositSuccess";
+
+// Auth Pages
 import AuthSelect from "./pages/auth/AuthSelect";
 import EmailSignup from "./pages/auth/EmailSignup";
 import VerifyEmail from "./pages/auth/VerifyEmail";
 import PhoneInput from "./pages/auth/PhoneInput";
 import VerifyPhone from "./pages/auth/VerifyPhone";
 import Login from "./pages/auth/Login";
+
+// Family Pages
+import FamilyCircle from "./pages/family/FamilyCircle";
+import InvestmentOptions from "./pages/family/InvestmentOptions";
 
 // Family Onboarding Flow
 import ChooseAccountType from "./pages/family/add-member/ChooseAccountType";
@@ -42,7 +55,7 @@ import ChildProfile from "./pages/family/add-member/ChildProfile";
 import FutureGoals from "./pages/family/add-member/FutureGoals";
 import FamilyCircleManage from "./pages/family/add-member/FamilyCircleManage";
 import InvestmentDetails from "./pages/family/add-member/InvestmentDetails";
-import ChildInvestmentOptions from "./pages/family/add-member/InvestmentOptions";
+import ChildInvestmentOptions from "./pages/family/add-member/ChildInvestmentOptions";
 
 const queryClient = new QueryClient();
 
@@ -53,19 +66,31 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          {/* Main App Routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/index" element={<Index />} />
           <Route path="/splash" element={<SplashScreen />} />
           <Route path="/onboarding" element={<OnboardingCarousel />} />
+          <Route path="/create-passcode" element={<CreatePasscode />} />
+          <Route path="/confirm-passcode" element={<ConfirmPasscode />} />
+          <Route path="/rewards" element={<Rewards />} />
+          <Route path="/statistics" element={<Statistics />} />
+          <Route path="/qr-code" element={<QRCode />} />
+          <Route path="/help/freeze" element={<HelpInfo />} />
+          
+          {/* Family Routes */}
+          <Route path="/family/family-circle" element={<FamilyCircle />} />
+          <Route path="/family/investment-options" element={<InvestmentOptions />} />
+          <Route path="/family/gift-deposit" element={<GiftDeposit />} />
+          <Route path="/family/deposit-success" element={<DepositSuccess />} />
+          
+          {/* Auth Routes */}
           <Route path="/auth/select" element={<AuthSelect />} />
           <Route path="/auth/signup" element={<EmailSignup />} />
           <Route path="/auth/verify-email" element={<VerifyEmail />} />
           <Route path="/auth/phone" element={<PhoneInput />} />
           <Route path="/auth/verify-phone" element={<VerifyPhone />} />
           <Route path="/auth/login" element={<Login />} />
-          <Route path="/create-passcode" element={<CreatePasscode />} />
-          <Route path="/confirm-passcode" element={<ConfirmPasscode />} />
-          <Route path="/family/family-circle" element={<FamilyCircle />} />
-          <Route path="/family/investment-options" element={<InvestmentOptions />} />
           
           {/* Family Onboarding Flow Routes */}
           <Route path="/family/add-member" element={<ChooseAccountType />} />
