@@ -1,9 +1,9 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { QrCode, Fingerprint, Link } from "lucide-react";
+import KeplrConnectPanel from "@/features/cosmos/KeplrConnectPanel";
 
 const KEPLR_ID = "keplr";
 
@@ -26,7 +26,6 @@ const WalletLogin = () => {
     return wallets[id] || "Your Wallet";
   }
   
-  // Simulate wallet connection
   useEffect(() => {
     if (connecting) {
       const timer = setTimeout(() => {
@@ -55,47 +54,25 @@ const WalletLogin = () => {
         </p>
 
         <div className="flex justify-center mb-8">
-          <div className="w-64 h-64 border-2 border-gray-300 rounded-lg p-2">
-            <div className="bg-white w-full h-full flex items-center justify-center">
-              {isKeplr ? (
-                <img
-                  src="https://assets.keplr.app/keplr-icon.png"
-                  alt="Keplr Logo"
-                  className="h-28 w-28 object-contain"
-                />
-              ) : (
-                <QrCode className="h-48 w-48 text-gray-800" />
-              )}
-            </div>
+          <div className="w-64 min-h-[260px] border-2 border-gray-200 rounded-lg p-2 bg-white flex items-center justify-center">
+            {isKeplr ? (
+              <KeplrConnectPanel />
+            ) : (
+              <QrCode className="h-48 w-48 text-gray-800" />
+            )}
           </div>
         </div>
 
-        <Button 
-          className="w-full py-6 bg-[#13ab6c] mb-4"
-          onClick={handleConnect}
-          disabled={connecting}
-        >
-          {connecting ? (isKeplr ? "Connecting via Keplr..." : "Connecting...") : (isKeplr ? "Connect with Keplr" : "Connect Wallet")}
-        </Button>
-        
-        {isKeplr && (
-          <Card className="overflow-hidden mb-4">
-            <CardContent className="p-4 text-center">
-              <div className="flex justify-center mb-2">
-                <div className="animate-pulse">
-                  <Link className="h-8 w-8 text-[#13ab6c]" />
-                </div>
-              </div>
-              <p className="text-sm text-gray-600 mb-2">
-                Make sure the Keplr extension or app is installed and unlocked. You’ll be able to use IBC-enabled tokens here when $NESTIFI is live.
-              </p>
-              <div className="text-xs text-gray-400">
-                $NESTIFI not yet deployed. Cosmos/IBC wallet connect available for setup.
-              </div>
-            </CardContent>
-          </Card>
+        {!isKeplr && (
+          <Button 
+            className="w-full py-6 bg-[#13ab6c] mb-4"
+            onClick={handleConnect}
+            disabled={connecting}
+          >
+            {connecting ? "Connecting..." : "Connect Wallet"}
+          </Button>
         )}
-
+        
         {connecting && !isKeplr && (
           <Card className="overflow-hidden mb-4">
             <CardContent className="p-4 text-center">
@@ -116,4 +93,3 @@ const WalletLogin = () => {
 };
 
 export default WalletLogin;
-

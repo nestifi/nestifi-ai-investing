@@ -24,7 +24,7 @@ const SelectWallet = () => {
       id: "keplr",
       name: "Keplr Wallet (Cosmos/IBC)",
       logo: "https://assets.keplr.app/keplr-icon.png", // Official Keplr logo
-      description: "Best for Cosmos & IBC chains"
+      description: "Connect Cosmos/IBC assets. $NESTIFI coming soon!"
     },
   ];
 
