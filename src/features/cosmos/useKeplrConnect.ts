@@ -1,10 +1,10 @@
 
 import { useCallback, useState } from "react";
 
-// Reference the global KeplrWindow type
+// Make sure TypeScript recognizes our Keplr types
 /// <reference types="src/vite-env.d.ts" />
 
-// Exposed Keplr types are not available unless using @keplr-wallet types. We'll use window.keplr as "any"
+// Define the interface for the hook's return value
 interface UseKeplrConnectResult {
   connecting: boolean;
   account: string | null;
