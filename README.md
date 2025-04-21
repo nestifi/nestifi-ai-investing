@@ -14,7 +14,7 @@ NestiFi is a secure, family-first financial management platform empowering paren
 - Unified family home dashboard with account and member management
 - Rewards, investment, and savings goals for children and adults
 - Bank and NestiFi account switching
-- Secure transaction flows (deposit, transfer, payment confirmation)
+- Secure transaction flows (deposits, transfers, payment confirmations)
 - Family circle and add user/invite flows
 - QR code sharing for easy connections
 - Analytics and statistics (charts, KPIs)
