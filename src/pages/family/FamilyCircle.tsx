@@ -55,7 +55,7 @@ const FamilyCircle = () => {
         </div>
 
         <Button 
-          className="w-full flex items-center justify-center gap-2 mb-4"
+          className="w-full flex items-center justify-center gap-2 mb-4 bg-[#13ab6c]"
           onClick={() => navigate("/family/add-member")}
         >
           <PlusCircle className="h-5 w-5" />
@@ -64,7 +64,7 @@ const FamilyCircle = () => {
 
         <Button 
           variant="outline" 
-          className="w-full"
+          className="w-full border-[#13ab6c] text-[#13ab6c]"
           onClick={() => navigate("/family/investment-options")}
         >
           Continue to investments

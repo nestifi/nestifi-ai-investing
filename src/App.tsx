@@ -19,6 +19,14 @@ import PhoneInput from "./pages/auth/PhoneInput";
 import VerifyPhone from "./pages/auth/VerifyPhone";
 import Login from "./pages/auth/Login";
 
+// Family Onboarding Flow
+import ChooseAccountType from "./pages/family/add-member/ChooseAccountType";
+import AdultDetailsForm from "./pages/family/add-member/AdultDetailsForm";
+import ChildDetailsForm from "./pages/family/add-member/ChildDetailsForm";
+import IncomeInfo from "./pages/family/add-member/IncomeInfo";
+import Agreement from "./pages/family/add-member/Agreement";
+import ConnectChoice from "./pages/family/add-member/ConnectChoice";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -41,6 +49,15 @@ const App = () => (
           <Route path="/confirm-passcode" element={<ConfirmPasscode />} />
           <Route path="/family/family-circle" element={<FamilyCircle />} />
           <Route path="/family/investment-options" element={<InvestmentOptions />} />
+          
+          {/* Family Onboarding Flow Routes */}
+          <Route path="/family/add-member" element={<ChooseAccountType />} />
+          <Route path="/family/add-member/adult-details" element={<AdultDetailsForm />} />
+          <Route path="/family/add-member/child-details" element={<ChildDetailsForm />} />
+          <Route path="/family/add-member/income-info" element={<IncomeInfo />} />
+          <Route path="/family/add-member/agreement" element={<Agreement />} />
+          <Route path="/family/add-member/connect-choice" element={<ConnectChoice />} />
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
