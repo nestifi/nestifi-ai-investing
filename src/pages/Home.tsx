@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Gift, Statistics, Share, ManageInformation, InviteFamilyOrFriends, Plus, CalendarPlus, CalendarDays, ArrowDown } from "lucide-react";
+import { Gift, BarChart2, Share, Settings, Users, Plus, CalendarPlus, CalendarDays, ArrowDown } from "lucide-react";
 
 // Card slider data (for demonstration, just one for now)
 const accountCards = [
@@ -30,7 +30,7 @@ const topActions = [
   },
   {
     label: "Statistics",
-    icon: Statistics,
+    icon: BarChart2,
     onClick: (navigate: any) => navigate("/statistics"),
   },
   {
@@ -40,7 +40,7 @@ const topActions = [
   },
   {
     label: "Manage information",
-    icon: ManageInformation,
+    icon: Settings,
     onClick: (navigate: any) => window.alert("Manage information"),
   },
 ];
@@ -49,7 +49,7 @@ const topActions = [
 const secondaryActions = [
   {
     label: "Invite family or friends",
-    icon: InviteFamilyOrFriends,
+    icon: Users,
     color: "bg-violet-600 text-white",
     onClick: (navigate: any) => window.alert("Invite family or friends"),
   },
