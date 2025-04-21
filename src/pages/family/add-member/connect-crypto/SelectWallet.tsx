@@ -8,6 +8,7 @@ interface Wallet {
   id: string;
   name: string;
   logo?: string;
+  description?: string;
 }
 
 const SelectWallet = () => {
@@ -19,6 +20,12 @@ const SelectWallet = () => {
     { id: "3", name: "Trust Wallet", logo: "/placeholder.svg" },
     { id: "4", name: "Ledger", logo: "/placeholder.svg" },
     { id: "5", name: "Rainbow", logo: "/placeholder.svg" },
+    {
+      id: "keplr",
+      name: "Keplr Wallet (Cosmos/IBC)",
+      logo: "https://assets.keplr.app/keplr-icon.png", // Official Keplr logo
+      description: "Best for Cosmos & IBC chains"
+    },
   ];
 
   const handleSelectWallet = (walletId: string) => {
@@ -54,6 +61,9 @@ const SelectWallet = () => {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-medium">{wallet.name}</h3>
+                  {wallet.description && (
+                    <span className="text-xs text-gray-500">{wallet.description}</span>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -65,3 +75,4 @@ const SelectWallet = () => {
 };
 
 export default SelectWallet;
+
