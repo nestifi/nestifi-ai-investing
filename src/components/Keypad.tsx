@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Backspace } from "lucide-react";
+import { X } from "lucide-react";
 
 interface KeypadProps {
   onKeyPress: (key: string) => void;
@@ -13,7 +13,7 @@ export const Keypad: React.FC<KeypadProps> = ({ onKeyPress, onDelete }) => {
     ["1", "2", "3"],
     ["4", "5", "6"],
     ["7", "8", "9"],
-    ["", "0", <Backspace className="h-5 w-5" key="backspace" />]
+    ["", "0", <X className="h-5 w-5" key="backspace" />]
   ];
 
   const handleKeyClick = (key: string | JSX.Element) => {
