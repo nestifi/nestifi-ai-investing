@@ -1,5 +1,5 @@
 
-# NestiFi Family Finance App
+# NestiFi AI Investing App
 
 [https://nestifi.money](https://nestifi.money)
 
