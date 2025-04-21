@@ -7,10 +7,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
-// Sample rewards data
+// Updated rewards data with Starbucks logo image
 const rewardsData = {
   all: [
-    { id: 1, brand: "Starbucks", description: "15% cashback on all purchases", image: "/placeholder.svg", category: "food" },
+    { id: 1, brand: "Starbucks", description: "15% cashback on all purchases", image: "/images/starbucks.png", category: "food" },
     { id: 2, brand: "Amazon", description: "5% cashback on all purchases", image: "/placeholder.svg", category: "shopping" },
     { id: 3, brand: "Uber", description: "$5 off your next ride", image: "/placeholder.svg", category: "travel" },
     { id: 4, brand: "Walmart", description: "10% off your next purchase", image: "/placeholder.svg", category: "shopping" },
@@ -104,3 +104,4 @@ const Rewards = () => {
 };
 
 export default Rewards;
+
