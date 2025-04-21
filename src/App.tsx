@@ -19,6 +19,22 @@ import CreatePasscode from "./pages/auth/CreatePasscode";
 import ConfirmPasscode from "./pages/auth/ConfirmPasscode";
 import Login from "./pages/auth/Login";
 
+// Family Onboarding Flow
+import ChooseAccountType from "./pages/family/ChooseAccountType";
+import AdultDetails from "./pages/family/AdultDetails";
+import ChildDetails from "./pages/family/ChildDetails";
+import IncomeInformation from "./pages/family/IncomeInformation";
+import Agreement from "./pages/family/Agreement";
+import ConnectChoice from "./pages/family/ConnectChoice";
+import ConnectBank from "./pages/family/ConnectBank";
+import ConnectCrypto from "./pages/family/ConnectCrypto";
+import ConnectSuccess from "./pages/family/ConnectSuccess";
+import AddChild from "./pages/family/AddChild";
+import ChildDetailsAdd from "./pages/family/ChildDetailsAdd";
+import FamilyCircle from "./pages/family/FamilyCircle";
+import InvestmentOptions from "./pages/family/InvestmentOptions";
+import ChildProfile from "./pages/family/ChildProfile";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -41,6 +57,23 @@ const App = () => (
           <Route path="/confirm-passcode" element={<ConfirmPasscode />} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Index />} />
+          
+          {/* Family Onboarding Flow */}
+          <Route path="/family/choose-account-type" element={<ChooseAccountType />} />
+          <Route path="/family/adult-details" element={<AdultDetails />} />
+          <Route path="/family/child-details" element={<ChildDetails />} />
+          <Route path="/family/income-information" element={<IncomeInformation />} />
+          <Route path="/family/agreement" element={<Agreement />} />
+          <Route path="/family/connect-choice" element={<ConnectChoice />} />
+          <Route path="/family/connect-bank" element={<ConnectBank />} />
+          <Route path="/family/connect-crypto" element={<ConnectCrypto />} />
+          <Route path="/family/connect-success" element={<ConnectSuccess />} />
+          <Route path="/family/add-child" element={<AddChild />} />
+          <Route path="/family/child-details-add" element={<ChildDetailsAdd />} />
+          <Route path="/family/family-circle" element={<FamilyCircle />} />
+          <Route path="/family/investment-options" element={<InvestmentOptions />} />
+          <Route path="/family/child-profile/:childId" element={<ChildProfile />} />
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
