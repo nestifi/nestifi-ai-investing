@@ -1,10 +1,11 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const slides = [
   {
-    img: "/public/lovable-uploads/4b45f20d-efd0-452a-bed2-d64f6b0e2352.png",
+    img: "/public/lovable-uploads/f0d11a6d-dc97-46f7-95a8-b6b168611753.png",
     progress: [true, false, false],
     title: "Build Your Child's Future",
     desc: "Add your child's details, set financial goals, and track their journey toward a brighter future.",
@@ -43,46 +44,62 @@ const OnboardingCarousel = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#181519] flex flex-col items-center justify-between px-0 pt-10 pb-4 relative">
-      {/* Progress bar and Skip */}
-      <div className="w-full flex justify-between items-center px-6">
-        <div></div>
-        <div className="flex gap-2">
-          {[0, 1, 2].map(i => (
+    <div className="min-h-screen bg-[#171415] flex flex-col items-center justify-between relative w-full max-w-[393px] mx-auto h-[852px]">
+      {/* Header with Progress and Skip */}
+      <div className="w-full flex justify-between items-center px-4 pt-[47px] pb-4">
+        <div className="flex-1" />
+        <div className="flex gap-2 justify-center flex-1">
+          {[0, 1, 2].map((i) => (
             <div
               key={i}
-              className={`h-2 w-14 rounded-full ${
-                i <= idx ? "bg-green-600" : "bg-[#e2e2e2]"
-              } transition-all duration-300`}
+              className={`h-2 w-8 rounded-[20px] transition-colors ${
+                i <= idx ? "bg-[#0AA668]" : "bg-[#DFDFDF]"
+              }`}
             />
           ))}
         </div>
-        <button className="text-green-600 font-semibold" onClick={handleSkip}>
-          Skip
-        </button>
+        <div className="flex-1 text-right">
+          <button 
+            className="text-[#0AA668] font-bold text-sm"
+            onClick={handleSkip}
+          >
+            Skip
+          </button>
+        </div>
       </div>
-      {/* Image */}
-      <div className="flex-1 flex items-center justify-center w-full">
-        <img
-          src={slides[idx].img}
-          alt=""
-          className="w-full max-w-sm h-auto object-contain"
-        />
+
+      {/* Image Section */}
+      <div className="relative w-full h-[478px]">
+        <AspectRatio ratio={393/478} className="w-full">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <img
+              src={slides[idx].img}
+              alt=""
+              className="w-full h-full object-contain"
+            />
+          </div>
+        </AspectRatio>
       </div>
-      {/* Content */}
-      <div className="flex flex-col items-center w-full px-6 pb-6" style={{marginTop: "-70px"}}>
-        <h2 className="text-white text-2xl font-semibold text-center mb-4">{slides[idx].title}</h2>
-        <p className="text-gray-300 text-lg text-center mb-8">{slides[idx].desc}</p>
+
+      {/* Content Section */}
+      <div className="flex flex-col items-center px-4 w-full gap-3.5 mb-[58px]">
+        <h2 className="text-2xl font-medium text-white text-center w-full">
+          {slides[idx].title}
+        </h2>
+        <p className="text-base text-[#C7CAC9] text-center leading-6">
+          {slides[idx].desc}
+        </p>
         <button
           onClick={handleNext}
-          className="w-full py-3 rounded-xl text-lg font-medium bg-green-700 text-white mb-2"
+          className="w-full py-2.5 px-2.5 bg-[#016A40] text-white rounded-lg mt-10 font-medium"
         >
           {slides[idx].button}
         </button>
-        <div className="h-2" />
-        <div className="flex items-center justify-center">
-          <div className="w-24 h-1 rounded-full bg-white" />
-        </div>
+      </div>
+
+      {/* Home Indicator */}
+      <div className="absolute bottom-0 left-0 right-0 h-[34px] flex items-center justify-center">
+        <div className="w-[134px] h-[5px] bg-white rounded-full" />
       </div>
     </div>
   );
