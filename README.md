@@ -18,6 +18,7 @@ NestiFi is a secure, family-first financial management platform empowering paren
 - Family circle and add user/invite flows
 - QR code sharing for easy connections
 - Analytics and statistics (charts, KPIs)
+- Embedded finance APIs for Wealth Management
 
 See [nestifi.money](https://nestifi.money) for more product information.
 
