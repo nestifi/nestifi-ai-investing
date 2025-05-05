@@ -1,10 +1,23 @@
 
 import React, { useState } from 'react';
 import { Input } from '@/components/ui/input';
-import { Search } from 'lucide-react';
+import { Search, CreditCard, PiggyBank, BadgeDollarSign } from 'lucide-react';
 import TopicCard from '@/components/learn/TopicCard';
 import BottomNavbar from '@/components/layout/BottomNavbar';
 import { LearnProgressProvider, useLearnProgress } from '@/hooks/useLearnProgress';
+
+const getTopicIcon = (topicId: string) => {
+  switch (topicId) {
+    case "credit-score":
+      return <CreditCard size={36} />;
+    case "compound-interest":
+      return <PiggyBank size={36} />;
+    case "credit-cards":
+      return <BadgeDollarSign size={36} />;
+    default:
+      return null;
+  }
+};
 
 const LearnContent: React.FC = () => {
   const { topics } = useLearnProgress();
@@ -41,6 +54,7 @@ const LearnContent: React.FC = () => {
               description={topic.description}
               progress={topic.progress}
               imageUrl={topic.imageUrl}
+              icon={getTopicIcon(topic.id)}
             />
           ))}
           

@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, CreditCard, PiggyBank, BadgeDollarSign } from 'lucide-react';
 
 interface TopicCardProps {
   id: string;
@@ -11,23 +11,31 @@ interface TopicCardProps {
   description: string;
   progress: number;
   imageUrl: string;
+  icon?: React.ReactNode;
 }
 
-const TopicCard: React.FC<TopicCardProps> = ({ id, title, description, progress, imageUrl }) => {
+const TopicCard: React.FC<TopicCardProps> = ({ id, title, description, progress, imageUrl, icon }) => {
   return (
     <Link to={`/learn/${id}`}>
       <Card className="h-full hover:shadow-md transition-shadow">
-        <div className="w-full h-32 overflow-hidden rounded-t-lg">
-          <img 
-            src={imageUrl} 
-            alt={title} 
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              // Fallback if image doesn't load
-              const target = e.target as HTMLImageElement;
-              target.src = "/images/placeholder.svg";
-            }}
-          />
+        <div className="w-full h-32 overflow-hidden rounded-t-lg relative bg-primary/5 flex items-center justify-center">
+          {/* Display icon if available, otherwise use image */}
+          {icon ? (
+            <div className="text-primary w-16 h-16 flex items-center justify-center">
+              {icon}
+            </div>
+          ) : (
+            <img 
+              src={imageUrl} 
+              alt={title} 
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                // Fallback if image doesn't load
+                const target = e.target as HTMLImageElement;
+                target.src = "/images/placeholder.svg";
+              }}
+            />
+          )}
         </div>
         <CardContent className="pt-4">
           <h3 className="text-lg font-semibold mb-1">{title}</h3>
