@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Input } from '@/components/ui/input';
-import { Search, CreditCard, PiggyBank, BadgeDollarSign } from 'lucide-react';
+import { Search, CreditCard, PiggyBank, BadgeDollarSign, Coins } from 'lucide-react';
 import TopicCard from '@/components/learn/TopicCard';
 import BottomNavbar from '@/components/layout/BottomNavbar';
 import { LearnProgressProvider, useLearnProgress } from '@/hooks/useLearnProgress';
@@ -14,6 +14,8 @@ const getTopicIcon = (topicId: string) => {
       return <PiggyBank size={36} />;
     case "credit-cards":
       return <BadgeDollarSign size={36} />;
+    case "stablecoins":
+      return <Coins size={36} />;
     default:
       return null;
   }

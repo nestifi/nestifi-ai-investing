@@ -1,3 +1,5 @@
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
 
 export interface QuizQuestion {
   id: string;
@@ -243,6 +245,91 @@ export const learnTopics: LearnTopic[] = [
         correctAnswerIndex: 2,
         feedbackCorrect: "Correct! Consistently paying your full balance on time is one of the best ways to improve your credit score.",
         feedbackIncorrect: "Incorrect. Consistently paying your full balance on time is one of the best ways to improve your credit score."
+      }
+    ]
+  },
+  {
+    id: "stablecoins",
+    title: "Stablecoins",
+    description: "Understanding stablecoins and their role in the cryptocurrency ecosystem",
+    progress: 0,
+    imageUrl: "/images/stablecoins.png",
+    article: `
+      # Understanding Stablecoins
+
+      Stablecoins are cryptocurrencies designed to maintain a stable value relative to a specified asset, such as the US dollar or gold. Unlike volatile cryptocurrencies like Bitcoin or Ethereum, stablecoins aim to provide the benefits of digital currencies without the price fluctuations.
+      
+      ## Types of Stablecoins
+
+      ### Fiat-Collateralized Stablecoins
+      These are backed by reserves of fiat currency, typically at a 1:1 ratio. Examples include USDC and Tether (USDT), which are backed by US dollars held in reserve.
+      
+      ### Crypto-Collateralized Stablecoins
+      These use other cryptocurrencies as collateral, typically over-collateralized to account for price volatility. DAI is a well-known example, backed by various cryptocurrencies locked in smart contracts.
+      
+      ### Algorithmic Stablecoins
+      These maintain stability through algorithms and smart contracts that automatically control supply based on demand. They don't require collateral but rely on complex mechanisms to maintain their peg.
+      
+      ## Benefits of Stablecoins
+
+      1. **Reduced Volatility**: Stablecoins provide the benefits of crypto without the dramatic price swings.
+      2. **Efficient Transfers**: They enable fast, low-cost transfers across borders.
+      3. **Access to Financial Services**: They can provide banking-like services to the unbanked population.
+      4. **Trading Utility**: They serve as a stable store of value within the crypto ecosystem.
+      5. **Smart Contract Integration**: They can be used in decentralized finance (DeFi) applications.
+      
+      ## Risks and Considerations
+
+      - **Counterparty Risk**: For fiat-backed stablecoins, there's risk associated with the entity holding the reserves.
+      - **Regulatory Concerns**: Stablecoins face increasing regulatory scrutiny around the world.
+      - **Collateral Adequacy**: Questions about whether certain stablecoins are fully backed as claimed.
+      - **Technical Vulnerabilities**: Smart contract risks for crypto-collateralized and algorithmic stablecoins.
+      
+      ## The Future of Stablecoins
+
+      Stablecoins are likely to play a crucial role in the broader adoption of cryptocurrency technology. They bridge the gap between traditional finance and the crypto ecosystem, potentially becoming an important part of the future financial landscape, especially as central banks explore digital currencies.
+      
+      Understanding stablecoins helps build a more complete picture of the evolving digital asset space and provides insights into how blockchain technology might reshape financial services in the years ahead.
+    `,
+    quiz: [
+      {
+        id: "sc-q1",
+        question: "What is the primary purpose of stablecoins?",
+        options: [
+          "To maximize investment returns",
+          "To maintain a stable value relative to a specified asset",
+          "To replace traditional banking systems entirely",
+          "To mine new cryptocurrency tokens"
+        ],
+        correctAnswerIndex: 1,
+        feedbackCorrect: "Correct! Stablecoins are designed to maintain a stable value relative to assets like USD or gold, reducing the price volatility common in other cryptocurrencies.",
+        feedbackIncorrect: "Incorrect. The primary purpose of stablecoins is to maintain a stable value relative to a specified asset, providing the benefits of cryptocurrency without the price volatility."
+      },
+      {
+        id: "sc-q2",
+        question: "Which type of stablecoin is backed by traditional currencies held in reserve?",
+        options: [
+          "Algorithmic stablecoins",
+          "Crypto-collateralized stablecoins",
+          "Fiat-collateralized stablecoins",
+          "Synthetic stablecoins"
+        ],
+        correctAnswerIndex: 2,
+        feedbackCorrect: "Correct! Fiat-collateralized stablecoins are backed by traditional currencies like USD held in reserve, typically at a 1:1 ratio.",
+        feedbackIncorrect: "Incorrect. Fiat-collateralized stablecoins are backed by traditional currencies held in reserve, such as USDT which is backed by US dollars."
+      },
+      {
+        id: "sc-q3",
+        question: "Which of the following is a potential risk associated with stablecoins?",
+        options: [
+          "Too much stability causing market inefficiencies",
+          "Counterparty risk with the entity holding collateral reserves",
+          "Excessive transaction speeds overwhelming networks",
+          "Generating too much interest for traditional investors"
+        ],
+        correctAnswerIndex: 1,
+        feedbackCorrect: "Correct! Counterparty risk is a significant concern, especially for fiat-backed stablecoins where users must trust that the reserves are actually maintained as claimed.",
+        feedbackIncorrect: "Incorrect. Counterparty risk with the entity holding the collateral reserves is a significant concern for stablecoins, especially fiat-backed ones."
       }
     ]
   }
