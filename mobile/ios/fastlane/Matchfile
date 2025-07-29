@@ -1,0 +1,10 @@
+git_url("git@github.com:blockydevs/nestifi-ios-prototype-certificates.git")
+
+type("development") # The default type, can be: appstore, adhoc, enterprise or development
+
+app_identifier("com.silksoftwarehouse.blockydevs.nestifi")
+username("") # Your Apple Developer Portal username
+team_id("53CZK6PHLE")  # Developer Portal Team ID
+
+# For all available options run `fastlane match --help`
+# Remove the # in the beginning of the line to enable the other options
