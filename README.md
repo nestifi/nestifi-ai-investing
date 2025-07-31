@@ -1,4 +1,10 @@
+<div align="center">
+  
 **NestiFi: AI-Powered B2B2C WealthTech Platform for Financial Institutions**
+
+</div>
+
+![NestiFi Platform](https://cdn.prod.website-files.com/6752c046b5f9ff7e0884e638/687f9900ed740e04852c331e_NestiFi%20Opengraph%20Image.png)
 
 NestiFi is a transformative AI-powered WealthTech platform designed to empower financial institutions (FIs) to retain and grow Assets Under Management (AUM) during the $84 trillion Great Wealth Transfer. By offering a white-label, embedded API, or standalone SaaS solution, NestiFi enables credit unions, RIAs, family offices, and wealth managers to engage multi-generational families with collaborative investing and gamified financial education. Powered by our AI advisor, Sebastion, NestiFi addresses the 70% client attrition rate faced by FIs by fostering loyalty among younger generations. Learn more at nestifi.money/institutions.
 
