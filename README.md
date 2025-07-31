@@ -10,7 +10,7 @@ NestiFi is a transformative AI-powered WealthTech platform designed to empower f
 
 **Key Features for Institutions**
 
-- Multi-Generational Engagement: Reduce the 70% heir attrition rate by enabling families to invest collaboratively through custodial accounts (529 plans, UGMA/UTMA), ETFs, and mainstream cryptocurrencies (BTC, ETH).
+- Multi-Generational Engagement: Reduce the 70% heir attrition rate by enabling families to invest collaboratively through custodial accounts (529 plans, UGMA/UTMA), ETFs, and mainstream cryptocurrencies (BTC, ETH, RWAs).
 
 - AI-Powered Advisory (Sebastion): Scalable, hyper-personalized guidance for families, reducing advisor workload while delivering real-time insights into client goals and behaviors.
 
@@ -28,11 +28,13 @@ NestiFi is a transformative AI-powered WealthTech platform designed to empower f
 
 **Consumer Features**
 
-- Gamified Financial Education: “Duolingo for Finance” modules drive 82% lesson completion, fostering loyalty among younger clients through interactive learning.
+- Gamified Financial Education: “Duolingo for Finance” modules, fostering loyalty among younger clients through interactive learning.
 
 - Stablecoin On-Ramps: Simplify cross-border contributions with USDC/USDT integration, reducing remittance friction.
 
 - Crypto Enablement: AI-driven education and compliance layers make it safe for FIs to offer digital assets, aligning with tokenization trends.
+
+- Real World Assets on MANTRA Layer 1 Blockchain
 
 **How It Works**
 
@@ -41,4 +43,3 @@ NestiFi is a transformative AI-powered WealthTech platform designed to empower f
 - Configure Family Networks: Enable clients to set up child accounts and invite contributors (parents, grandparents, relatives).
 
 - Engage Clients: Offer collaborative investing, AI-driven advice, and gamified education to build trust with the next generation.
-
