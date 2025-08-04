@@ -47,6 +47,7 @@ export function InviteForm({ onSubmit }: Props) {
     form.setValue('phone', '+1 (123) 456-7890');
     form.trigger();
   };
+
   return (
     <>
       <View width="100%" height={24} onPress={fillWithDefaults} />
@@ -59,7 +60,7 @@ export function InviteForm({ onSubmit }: Props) {
               <Input
                 label="First name"
                 placeholder="Harry"
-                autoCapitalize="none"
+                autoCapitalize="words"
                 autoCorrect={false}
                 value={value}
                 onChangeText={onChange}
@@ -74,8 +75,8 @@ export function InviteForm({ onSubmit }: Props) {
             render={({ field: { onChange, onBlur, value }, fieldState }) => (
               <Input
                 label="Last name"
-                placeholder="Sources"
-                autoCapitalize="none"
+                placeholder="Soures"
+                autoCapitalize="words"
                 autoCorrect={false}
                 value={value}
                 onChangeText={onChange}
@@ -96,7 +97,10 @@ export function InviteForm({ onSubmit }: Props) {
               autoCapitalize="none"
               autoCorrect={false}
               value={value}
-              onChangeText={onChange}
+              onChangeText={(text) => {
+                const formattedText = text === '' || text.startsWith('+') ? text : `+${text}`;
+                onChange(formattedText);
+              }}
               onBlur={onBlur}
               errorMessage={fieldState.error?.message}
             />

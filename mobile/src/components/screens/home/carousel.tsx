@@ -8,7 +8,7 @@ import { View, Avatar, XStack, YStack } from 'tamagui';
 import { H1 } from '@/components/header';
 import { Paragraph } from '@/components/paragraph';
 import { COLORS } from '@/constants/colors';
-import { childAvatar2ImageUri, childAvatarImageUri, placeholderImageUri } from '@/constants/images';
+import { childAvatarImageUri, childAvatar2ImageUri, childAvatar3ImageUri } from '@/constants/images';
 
 const data = [COLORS.additional.blue, COLORS.additional.red, COLORS.additional.yellow];
 const width = Dimensions.get('window').width;
@@ -27,9 +27,9 @@ const MOCKED_CHILDREN = [
     balance: '$30,850.00'
   },
   {
-    avatarUri: placeholderImageUri,
-    firstName: 'Yuri',
-    lastName: 'Owsienko',
+    avatarUri: childAvatar3ImageUri,
+    firstName: 'Bella',
+    lastName: 'Williams',
     balance: '$70,021.37'
   }
 ];

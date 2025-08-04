@@ -25,8 +25,8 @@ export default function AddFirstChildPage() {
   return (
     <BaseLayout grow={1}>
       <BackButton title="Add child to your family circle" />
-      <YStack justify="center" items="center" my={56} scale={2.5}>
-        <Image source={{ uri: familyCircleImageUri }} width={200} height={200} objectFit="contain" />
+      <YStack justify="center" items="center" my={16} pointerEvents="none">
+        <Image source={{ uri: familyCircleImageUri }} width="100%" aspectRatio={1} objectFit="contain" />
       </YStack>
       <Paragraph>
         Your Family Circle includes trusted family members and friends who can contribute to your child’s financial
@@ -36,7 +36,7 @@ export default function AddFirstChildPage() {
         <Button variant="primary" onPress={() => router.navigate('/(onboarding)/(children)/add-child')} width="100%">
           Add child
         </Button>
-        <Button variant="secondary" onPress={handleSkip} width="100%">
+        <Button variant="secondary" onPress={() => setOpen(true)} width="100%">
           Skip
         </Button>
       </YStack>
@@ -47,7 +47,7 @@ export default function AddFirstChildPage() {
         desc="Are you sure you’d like to stop the onboarding process? Don’t worry—you’ll still be able to complete your details later at your convenience."
       >
         <XStack gap={8}>
-          <Button flex={1} variant="secondary" onPress={() => router.navigate('/(dashboard)/(tabs)')}>
+          <Button flex={1} variant="secondary" onPress={handleSkip}>
             Stop onboarding
           </Button>
           <Button flex={1} variant="primary" onPress={() => setOpen(false)}>

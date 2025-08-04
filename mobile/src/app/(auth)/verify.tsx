@@ -24,7 +24,7 @@ export default function VerifyPage() {
       </View>
       <YStack gap={32}>
         <YStack gap={6}>
-          <H2>Verify your {Boolean(email) ? 'E-mail' : 'phone number'}</H2>
+          <H2>Verify your {email === 'true' ? 'E-mail' : 'phone number'}</H2>
           <Paragraph>
             Enter 6-digit code sent to <SizableText color={COLORS.grey[100]}>{parsedValue}</SizableText>
             {/* {loginViaEmail ? 'Please enter your email to log in' : 'Please enter your phone number to log in'} */}

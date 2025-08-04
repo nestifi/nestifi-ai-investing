@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import type { SubmitErrorHandler, SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import type { GestureResponderEvent } from 'react-native';
@@ -7,6 +8,11 @@ import { XStack, YStack } from 'tamagui';
 import z from 'zod';
 
 import CoinbaseIcon from '@/assets/icons/coinbase.svg';
+import BlackRockIcon from '@/assets/icons/etfs/blackrock.svg';
+import CharlesIcon from '@/assets/icons/etfs/charles.svg';
+import FidelityIcon from '@/assets/icons/etfs/fidelity.svg';
+import FranklinIcon from '@/assets/icons/etfs/franklin.svg';
+import VanguardIcon from '@/assets/icons/etfs/vanguard.svg';
 import MorganBankIcon from '@/assets/icons/morgan.svg';
 import { Button } from '@/components/button';
 import { PlaceholderCalendar } from '@/components/calendar';
@@ -15,6 +21,7 @@ import { Label } from '@/components/form/label';
 import { RadioGroup } from '@/components/form/radio-group';
 import { Select } from '@/components/form/select';
 import { Paragraph } from '@/components/paragraph';
+import { InvestmentOptionSheet } from '@/components/screens/children/profile/investment-option-sheet';
 import { COLORS } from '@/constants/colors';
 
 interface Props {
@@ -23,7 +30,7 @@ interface Props {
 }
 
 const schema = z.object({
-  payWith: z.string({ error: 'Payment method is required' }),
+  payWith: z.string().min(1, { error: 'Payment method is required' }),
   investmentProduct: z.string().min(1, { error: 'Investment product is required' }),
   amount: z.number({ error: 'Amount is required' }).min(1, { error: 'Amount must be greater than 0' }),
   date: z.string({ error: 'Invalid date' }).min(1, { error: 'Date is required' })
@@ -32,10 +39,13 @@ const schema = z.object({
 type InvestmentForm = z.infer<typeof schema>;
 
 const investmentProductOptions = [
-  'Default Investment Product',
-  'Investment Product 1',
-  'Investment Product 2',
-  'Investment Product 3'
+  { title: '529 College Fund', icon: FidelityIcon, tooltip: true },
+  { title: 'UTMA Fund', icon: FranklinIcon, tooltip: true },
+  { title: 'UGMA Fund', icon: FranklinIcon, tooltip: true },
+  { title: 'Index Fund', icon: VanguardIcon, tooltip: true },
+  { title: 'Equities Fund', icon: CharlesIcon, tooltip: true },
+  { title: 'Bitcoin ETF from Blackrock', icon: BlackRockIcon, tooltip: true },
+  { title: 'Fidelity Bitcoin Fund ETF', icon: FidelityIcon, tooltip: true }
 ];
 
 const radioOptions = [
@@ -60,6 +70,7 @@ const radioOptions = [
 ] as const;
 
 export function InvestmentForm({ onCancel, onSubmit }: Props) {
+  const [selectedInvestment, setSelectedInvestment] = useState<string | null>(null);
   const form = useForm<InvestmentForm>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -81,7 +92,7 @@ export function InvestmentForm({ onCancel, onSubmit }: Props) {
 
   const fillWithDefaults = () => {
     form.setValue('payWith', radioOptions[0].id);
-    form.setValue('investmentProduct', investmentProductOptions[0] ?? '');
+    form.setValue('investmentProduct', investmentProductOptions[0]?.title ?? '');
     form.setValue('amount', 100);
     form.trigger();
   };
@@ -116,9 +127,18 @@ export function InvestmentForm({ onCancel, onSubmit }: Props) {
             value={value}
             onChange={onChange}
             onBlur={onBlur}
+            onTooltipPress={(item) => {
+              setSelectedInvestment(item.title);
+            }}
             errorMessage={fieldState.error?.message}
           />
         )}
+      />
+      <InvestmentOptionSheet
+        investmentName={selectedInvestment}
+        setOpen={(open) => {
+          setSelectedInvestment((prev) => (open ? prev : null));
+        }}
       />
       <Controller
         control={form.control}

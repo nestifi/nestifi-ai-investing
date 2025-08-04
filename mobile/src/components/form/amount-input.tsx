@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import { TextInput } from 'react-native';
 import { XStack, YStack, Text, View } from 'tamagui';
 
 import { ErrorMessage } from '@/components/form/error-message';
@@ -30,6 +32,10 @@ export function AmountInput({
   currency,
   showCurrentAmount = false
 }: AmountInputProps) {
+  const inputRef = useRef<TextInput>(null);
+  const fontSize = 24;
+  const lineHeight = 24 * 1.6;
+
   const handleIncrease = () => {
     if (disabled || (max !== undefined && value + step > max)) return;
     onChange(value + step);
@@ -41,8 +47,8 @@ export function AmountInput({
   };
 
   return (
-    <YStack width={248} mx="auto" items="center" gap="$2">
-      <XStack width="100%" items="center" justify="space-between">
+    <YStack width={280} mx="auto" items="center" gap="$2">
+      <XStack gap={16} width="100%" items="center" justify="space-between">
         <PressableWithFeedback onPress={handleDecrease} disabled={disabled || value <= min}>
           <View
             width={BUTTON_SIZE}
@@ -59,10 +65,39 @@ export function AmountInput({
             </Text>
           </View>
         </PressableWithFeedback>
-        <Text fontSize={24} fontWeight="600" color={COLORS.grey[90]} text="center">
-          ${value.toFixed(0)}
-          {currency ? ` ${currency}` : ''}
-        </Text>
+        <XStack
+          items="center"
+          onPress={() => {
+            inputRef.current?.focus();
+          }}
+        >
+          <Paragraph fontSize={fontSize} lineHeight={lineHeight} fontWeight={600} color={COLORS.grey[90]}>
+            $
+          </Paragraph>
+          <TextInput
+            ref={inputRef}
+            numberOfLines={1}
+            allowFontScaling
+            value={`${value}`}
+            onChangeText={(text) => onChange(!!text ? Number(text.replace(/[^0-9]/g, '')) : 0)}
+            keyboardType="numeric"
+            maxLength={5}
+            placeholder="0"
+            placeholderTextColor={COLORS.grey[20]}
+            style={{
+              maxWidth: 180,
+              color: COLORS.grey[90],
+              padding: 10,
+              fontWeight: 600,
+              fontSize,
+              paddingHorizontal: 0,
+              paddingVertical: 0
+            }}
+          />
+          <Paragraph ml={4} fontSize={fontSize} lineHeight={lineHeight} fontWeight={600} color={COLORS.grey[90]}>
+            {currency ? ` ${currency}` : ''}
+          </Paragraph>
+        </XStack>
         <PressableWithFeedback onPress={handleIncrease} disabled={disabled || (max !== undefined && value >= max)}>
           <View
             width={BUTTON_SIZE}
@@ -82,7 +117,11 @@ export function AmountInput({
       </XStack>
       {showCurrentAmount && (
         <Paragraph fontSize={12} color={COLORS.grey[60]}>
-          Current amount: <Text color={COLORS.grey[100]}>$1250{currency ? ` ${currency}` : ''}</Text>
+          Current amount:{' '}
+          <Text color={COLORS.grey[100]}>
+            ${value.toFixed(0)}
+            {currency ? ` ${currency}` : ''}
+          </Text>
         </Paragraph>
       )}
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}

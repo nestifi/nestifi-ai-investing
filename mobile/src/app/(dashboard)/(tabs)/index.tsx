@@ -46,10 +46,10 @@ export default function HomePage() {
     {
       content: (
         <YStack flexWrap="nowrap" gap={10} mb={16}>
-          <TransferRow value="23.00" to="Dan" date="16 June" type="pending" />
-          <TransferRow value="65.00" to="Dan" date="16 June" type="pending" />
-          <TransferRow value="100.00" to="Jurek" date="16 June" type="pending" />
-          <TransferRow value="21.37" to="Dan" date="16 June" type="pending" />
+          <TransferRow value="23.00" to="Dan" date="16 August" type="pending" />
+          <TransferRow value="65.00" to="Dan" date="16 August" type="pending" />
+          <TransferRow value="100.00" to="Jurek" date="16 September" type="pending" />
+          <TransferRow value="21.37" to="Dan" date="16 September" type="pending" />
         </YStack>
       ),
       label: 'Upcoming',
@@ -69,13 +69,17 @@ export default function HomePage() {
             <ProfileIcon />
           </TouchableOpacityWithFeedback>
           <H2 color={COLORS.grey[0]}>Home</H2>
-          <DepositIcon />
+          <TouchableOpacityWithFeedback
+            activeOpacity={0.85}
+            onPress={() => router.navigate('/(dashboard)/(add-flow)/family-circle')}
+          >
+            <DepositIcon />
+          </TouchableOpacityWithFeedback>
         </XStack>
         <H1 color={COLORS.grey[0]}>{session?.type === 'CHILD' ? 'Welcome Back, Dan!' : 'Welcome Back, Robert!'}</H1>
-        <Paragraph color={COLORS.grey[30]} mb={16} onPress={() => router.navigate('/(public)/invite/123')}>
+        <Paragraph color={COLORS.grey[30]} mb={16}>
           Your Financial Goals Are On Track!
         </Paragraph>
-
         {session?.type === 'CHILD' ? (
           <XStack
             items="center"

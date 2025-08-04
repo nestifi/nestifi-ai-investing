@@ -65,7 +65,7 @@ export default function Page() {
                   Open
                 </Paragraph>
                 <Paragraph variant="small" fontWeight={300} color={COLORS.grey[0]}>
-                  $194.90
+                  $1,000
                 </Paragraph>
               </XStack>
               <XStack justify="space-between">
@@ -73,7 +73,7 @@ export default function Page() {
                   Day Range
                 </Paragraph>
                 <Paragraph variant="small" fontWeight={300} color={COLORS.grey[0]}>
-                  194.50-196.30
+                  $1,000 - $1,000
                 </Paragraph>
               </XStack>
               <XStack justify="space-between">
@@ -81,7 +81,7 @@ export default function Page() {
                   Total net assets
                 </Paragraph>
                 <Paragraph variant="small" fontWeight={300} color={COLORS.grey[0]}>
-                  $56.502B
+                  $1,500,000
                 </Paragraph>
               </XStack>
             </YStack>
@@ -91,7 +91,7 @@ export default function Page() {
                   52 week range
                 </Paragraph>
                 <Paragraph variant="small" fontWeight={300} color={COLORS.grey[0]}>
-                  135.50-201.20
+                  $1,000 - $1,000
                 </Paragraph>
               </XStack>
               <XStack justify="space-between">
@@ -99,7 +99,7 @@ export default function Page() {
                   Shares{' '}
                 </Paragraph>
                 <Paragraph variant="small" fontWeight={300} color={COLORS.grey[0]}>
-                  15.8B
+                  1,500.00
                 </Paragraph>
               </XStack>
               <XStack justify="space-between">

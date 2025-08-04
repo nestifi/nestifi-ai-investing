@@ -65,7 +65,7 @@ export function InviteForm({ onSubmit, onClose }: Props) {
               <Input
                 label="First name"
                 placeholder="Harry"
-                autoCapitalize="none"
+                autoCapitalize="words"
                 autoCorrect={false}
                 value={value}
                 onChangeText={onChange}
@@ -80,8 +80,8 @@ export function InviteForm({ onSubmit, onClose }: Props) {
             render={({ field: { onChange, onBlur, value }, fieldState }) => (
               <Input
                 label="Last name"
-                placeholder="Sources"
-                autoCapitalize="none"
+                placeholder="Soures"
+                autoCapitalize="words"
                 autoCorrect={false}
                 value={value}
                 onChangeText={onChange}
@@ -119,7 +119,10 @@ export function InviteForm({ onSubmit, onClose }: Props) {
               autoCapitalize="none"
               autoCorrect={false}
               value={value}
-              onChangeText={onChange}
+              onChangeText={(text) => {
+                const formattedText = text === '' || text.startsWith('+') ? text : `+${text}`;
+                onChange(formattedText);
+              }}
               onBlur={onBlur}
               errorMessage={fieldState.error?.message}
             />

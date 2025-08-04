@@ -9,7 +9,7 @@ import { BaseLayout } from '@/components/layout/base-layout';
 import { Paragraph } from '@/components/paragraph';
 import { TouchableOpacityWithFeedback } from '@/components/touchable-opacity-with-feedback';
 import { COLORS } from '@/constants/colors';
-import { childAvatarImageUri } from '@/constants/images';
+import { placeholderImageUri } from '@/constants/images';
 import { useAuthActions } from '@/store/auth';
 import { useOnboardingActions, useOnboardingState } from '@/store/onboarding';
 
@@ -58,7 +58,7 @@ export default function Page() {
             <XStack rounded={16} p={16} gap={12} items="center" bg={COLORS.accent[50]}>
               {member.investment && <CheckedIcon />}
               <Avatar circular size="$6">
-                <Avatar.Image src={childAvatarImageUri} />
+                <Avatar.Image src={member.photo ?? placeholderImageUri} />
                 <Avatar.Fallback backgroundColor={COLORS.accent[60]} />
               </Avatar>
               <YStack justify="center" gap={4}>

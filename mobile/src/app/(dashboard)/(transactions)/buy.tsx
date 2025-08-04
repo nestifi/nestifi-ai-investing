@@ -27,6 +27,9 @@ export default function Page() {
   if (!data) return null;
 
   const { icon, name } = data;
+  const price = 1000;
+  const valueAsNumber = Number(value);
+  const shares = Number.isNaN(valueAsNumber) ? 0 : valueAsNumber / price;
 
   return (
     <BaseLayout grow={1}>
@@ -80,9 +83,8 @@ export default function Page() {
               }}
             />
           </XStack>
-
           <Paragraph variant="secondary" color={COLORS.grey[20]}>
-            1.604 Shares
+            {shares} Shares
           </Paragraph>
         </YStack>
       </XStack>

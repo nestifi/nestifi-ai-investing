@@ -1,10 +1,12 @@
 import { memo, useState, type PropsWithChildren } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import type { ScrollView, SheetProps } from 'tamagui';
 import { Sheet as TamaguiSheet, useWindowDimensions, View } from 'tamagui';
 
 import { H2 } from '@/components/header';
 import { Paragraph } from '@/components/paragraph';
 import { COLORS } from '@/constants/colors';
+import { zIndexes } from '@/constants/z-index';
 
 interface Props extends PropsWithChildren {
   open: boolean;
@@ -12,11 +14,26 @@ interface Props extends PropsWithChildren {
   title?: string;
   desc?: string;
   preferAdaptParentOpenState?: boolean;
+  zIndex?: number;
+  snapPoints?: SheetProps['snapPoints'];
+  snapPointsMode?: SheetProps['snapPointsMode'];
+  scrollViewRef?: React.RefObject<ScrollView | null>;
 }
 
 const SPACER_HEIGHT = 90;
 
-export const Sheet: React.FC<Props> = ({ open, setOpen, preferAdaptParentOpenState, children, title, desc }) => {
+export const Sheet: React.FC<Props> = ({
+  open,
+  setOpen,
+  preferAdaptParentOpenState,
+  children,
+  title,
+  desc,
+  scrollViewRef,
+  zIndex = zIndexes.sheet,
+  snapPoints = ['fit'],
+  snapPointsMode = 'fit'
+}) => {
   const insets = useSafeAreaInsets();
   const [height, setHeight] = useState(0);
   const { height: windowHeight } = useWindowDimensions();
@@ -26,14 +43,15 @@ export const Sheet: React.FC<Props> = ({ open, setOpen, preferAdaptParentOpenSta
   return (
     <TamaguiSheet
       modal
+      moveOnKeyboardChange
       preferAdaptParentOpenState={preferAdaptParentOpenState}
       forceRemoveScrollEnabled={open}
       open={open}
       onOpenChange={setOpen}
-      snapPoints={needsExtraSpace ? [90] : ['fit']}
-      snapPointsMode={needsExtraSpace ? 'percent' : 'fit'}
+      snapPoints={needsExtraSpace ? [90] : snapPoints}
+      snapPointsMode={needsExtraSpace ? 'percent' : snapPointsMode}
       dismissOnSnapToBottom
-      zIndex={100_000}
+      zIndex={zIndex}
       animation="medium"
     >
       <TamaguiSheet.Overlay animation="lazy" bg="$shadow6" enterStyle={{ opacity: 0 }} exitStyle={{ opacity: 0 }} />
@@ -48,6 +66,7 @@ export const Sheet: React.FC<Props> = ({ open, setOpen, preferAdaptParentOpenSta
           <View width={80} height={5} rounded={2} bg={COLORS.grey[20]} />
         </View>
         <TamaguiSheet.ScrollView
+          ref={scrollViewRef}
           showsVerticalScrollIndicator={false}
           onContentSizeChange={(_width, height) => setHeight(height)}
         >

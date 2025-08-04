@@ -42,7 +42,7 @@ export function SharePaymentLinkSheet({ open, setOpen }: Props) {
       open={open}
       setOpen={setOpen}
       title="Share Payment Link"
-      desc={`Share the link below with the family circle so they can invest in ${session.firstName}'s college fund.`}
+      desc={`Share the link below with the family circle so they can invest in Dan's college fund.`}
     >
       <YStack>
         <View position="relative" mb={40}>

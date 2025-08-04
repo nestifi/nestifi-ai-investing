@@ -60,6 +60,9 @@ export default function DashboardLayout() {
         name="(transactions)/success"
         options={{ title: 'Success', headerShown: false, contentStyle: { backgroundColor: COLORS.grey[100] } }}
       />
+      <Stack.Screen name="(add-flow)/family-circle" options={{ title: 'Family Circle', headerShown: false }} />
+      <Stack.Screen name="(add-flow)/add-child" options={{ title: 'Add Child', headerShown: false }} />
+      <Stack.Screen name="(add-flow)/profile" options={{ title: 'Profile', headerShown: false }} />
     </Stack>
   );
 }

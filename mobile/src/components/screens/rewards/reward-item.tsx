@@ -45,7 +45,7 @@ export const RewardItem: React.FC<Props> = ({ value, name, icon, disabled = fals
             {value} $NESTIFI Tokens
           </H2>
           <Paragraph color={COLORS.grey[60]} text="center" mb={24}>
-            {name} for TBA month
+            {name} for 1 month
           </Paragraph>
           <Paragraph text="center" color={COLORS.grey[70]} mb={24}>
             Access premium Rewards content for consistent deposits

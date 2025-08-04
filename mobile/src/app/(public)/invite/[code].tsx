@@ -21,6 +21,7 @@ import { H2 } from '@/components/header';
 import { BaseLayout } from '@/components/layout/base-layout';
 import { Paragraph } from '@/components/paragraph';
 import { COLORS } from '@/constants/colors';
+import { countryOptions } from '@/mocks/countries';
 import { useAuthState } from '@/store/auth';
 import { useTransactionActions, useTransactionState } from '@/store/transaction';
 
@@ -82,8 +83,6 @@ const step2Schema = z.object({
   country: z.string().min(1, 'Country is required'),
   region: z.string().min(1, 'Region is required')
 });
-
-const countryOptions = ['United States', 'Canada', 'United Kingdom', 'Australia', 'Germany', 'France', 'Japan'];
 
 type Step2Form = z.infer<typeof step2Schema>;
 
@@ -242,7 +241,7 @@ function Step2({ onClose, onSend }: Step2Props) {
             <Input
               label="Cardholder Name"
               placeholder="Lorem ipsum"
-              autoCapitalize="none"
+              autoCapitalize="words"
               autoCorrect={false}
               value={value}
               onChangeText={onChange}
@@ -377,9 +376,8 @@ export default function Page() {
   })();
 
   const desc = (() => {
-    if (step === 1) return `Enter the amount you want to gift to ${session.firstName} ${session.lastName}`;
-    if (step === 2)
-      return `You’re about to send ${session.firstName} a gift. Please review and confirm the details before proceeding`;
+    if (step === 1) return `Enter the amount you want to gift to Dan Williams`;
+    if (step === 2) return `You’re about to send Dan a gift. Please review and confirm the details before proceeding`;
     if (step === 3)
       return `You’re about to complete your payment. A ${feePercentage * 100}% transaction fee will be added, making the final amount $${total}. Please review your payment details and confirm to proceed.`;
   })();

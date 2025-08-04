@@ -37,6 +37,9 @@ export default function Page() {
 
   const { icon, name } = data;
   const parsedValue = typeof value === 'string' ? value : '0';
+  const price = 1000;
+  const valueAsNumber = Number(parsedValue);
+  const shares = Number.isNaN(valueAsNumber) ? 0 : valueAsNumber / price;
 
   return (
     <BaseLayout grow={1}>
@@ -50,7 +53,7 @@ export default function Page() {
             -${value}
           </H1>
           <Paragraph variant="small" color={COLORS.grey[20]}>
-            Market Buy 1.6815 IBIT
+            Market Buy {shares} LIBRE
           </Paragraph>
         </YStack>
         {icon}
@@ -66,12 +69,12 @@ export default function Page() {
           title="Price"
           value={
             <Paragraph color="#3C9A03">
-              <TriangleUpIcon />1 IBIT = $59.46
+              <TriangleUpIcon />1 LIBRE = $1,000.00
             </Paragraph>
           }
         />
-        <Row title="Estimated shares" value="1.6815 IBIT" />
-        <Row title="Exchanged" value="€90.33" />
+        <Row title="Estimated shares" value={`${shares} LIBRE`} />
+        <Row title="Exchanged" value="$1,000" />
         <Row title="Commission-free trades left" value="10 out of 10" />
       </YStack>
 

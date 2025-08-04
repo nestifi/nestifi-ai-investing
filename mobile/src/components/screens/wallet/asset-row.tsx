@@ -15,6 +15,7 @@ interface Props {
   variant?: 'default' | 'bigger';
   title?: string;
   icon: React.ReactElement;
+  disabled?: boolean;
 }
 
 export const AssetRow: React.FC<Props> = ({
@@ -25,11 +26,13 @@ export const AssetRow: React.FC<Props> = ({
   variant = 'default',
   icon,
   title,
-  secondValue
+  secondValue,
+  disabled = false
 }) => {
   return (
     <TouchableOpacityWithFeedback
       activeOpacity={0.9}
+      disabled={disabled}
       onPress={() =>
         title &&
         router.navigate({
@@ -63,7 +66,7 @@ export const AssetRow: React.FC<Props> = ({
             {abbr}
           </Paragraph>
         </YStack>
-        <YStack ml="auto" gap={4} justify="center">
+        <YStack ml="auto" gap={4} items="flex-end" justify="center">
           <Paragraph
             variant="secondary"
             text="right"

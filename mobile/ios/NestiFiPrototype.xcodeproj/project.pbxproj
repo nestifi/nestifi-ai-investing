@@ -338,7 +338,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 53CZK6PHLE;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 53CZK6PHLE;
 				ENABLE_BITCODE = NO;
@@ -384,7 +384,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 53CZK6PHLE;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 53CZK6PHLE;
 				INFOPLIST_FILE = NestiFiPrototype/Info.plist;

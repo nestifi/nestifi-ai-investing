@@ -34,7 +34,7 @@ type PersonalDetailsForm = z.infer<typeof schema>;
 
 export default function PersonalDetailsPage() {
   const { accountType, personalDetails } = useOnboardingState();
-  const [showImage, setShowImage] = useState(!!personalDetails?.photo);
+  const [photo, setPhoto] = useState<string | null>(personalDetails?.photo ?? null);
   const { resetState, setPersonalDetails } = useOnboardingActions();
   const { finishOnboarding } = useAuthActions();
   const form = useForm<PersonalDetailsForm>({
@@ -49,12 +49,11 @@ export default function PersonalDetailsPage() {
   });
 
   const imageUri = accountType === 'ADULT' ? adultAvatarImageUri : childAvatarImageUri;
-
   const genderOptions = ['Male', 'Female', 'Other'];
 
   const onSubmit: SubmitHandler<PersonalDetailsForm> = async (data) => {
     setPersonalDetails({
-      photo: showImage ? imageUri : null,
+      photo,
       firstName: data.firstName,
       lastName: data.lastName,
       dateOfBirth: data.birthDate,
@@ -68,7 +67,7 @@ export default function PersonalDetailsPage() {
       await finishOnboarding({
         accountType: 'CHILD',
         personalDetails: {
-          photo: showImage ? imageUri : null,
+          photo,
           firstName: data.firstName,
           lastName: data.lastName,
           dateOfBirth: data.birthDate,
@@ -92,7 +91,7 @@ export default function PersonalDetailsPage() {
   };
 
   const fillWithDefaults = () => {
-    setShowImage(true);
+    setPhoto(imageUri);
     form.setValue('firstName', 'Doe');
     form.setValue('lastName', 'John');
     form.setValue('birthDate', '01/01/2010');
@@ -116,15 +115,15 @@ export default function PersonalDetailsPage() {
           <Paragraph>Enter information below to personalize your experience. Your data is safe.</Paragraph>
         </YStack>
         <YStack gap={8} items="center">
-          {showImage ? (
-            <Image source={{ uri: imageUri }} rounded={50} width={96} height={96} objectFit="contain" />
+          {photo ? (
+            <Image source={{ uri: photo }} rounded={50} width={96} height={96} objectFit="contain" />
           ) : (
             <View rounded={50} width={96} height={96} justify="center" items="center" bg={COLORS.accent[50]}>
               <PhotoIcon height={40} width={40} />
             </View>
           )}
-          <TouchableOpacityWithFeedback onPress={() => setShowImage(true)} activeOpacity={0.8}>
-            <Paragraph color={COLORS.accent[90]}>{showImage ? 'Change photo' : 'Add photo'}</Paragraph>
+          <TouchableOpacityWithFeedback onPress={() => setPhoto(imageUri)} activeOpacity={0.8}>
+            <Paragraph color={COLORS.accent[90]}>{photo ? 'Change photo' : 'Add photo'}</Paragraph>
           </TouchableOpacityWithFeedback>
         </YStack>
         <YStack gap={16}>
@@ -136,7 +135,7 @@ export default function PersonalDetailsPage() {
                 <Input
                   label="First name"
                   placeholder="Sandy"
-                  autoCapitalize="none"
+                  autoCapitalize="words"
                   autoCorrect={false}
                   value={value}
                   onChangeText={onChange}
@@ -152,7 +151,7 @@ export default function PersonalDetailsPage() {
                 <Input
                   label="Last name"
                   placeholder="Mendes"
-                  autoCapitalize="none"
+                  autoCapitalize="words"
                   autoCorrect={false}
                   value={value}
                   onChangeText={onChange}

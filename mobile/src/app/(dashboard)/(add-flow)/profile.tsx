@@ -27,15 +27,15 @@ import { env } from '@/constants/env';
 import type { FutureGoal } from '@/constants/future-goals';
 import { FUTURE_GOALS } from '@/constants/future-goals';
 import { familyImageUri, adultAvatar1ImageUri } from '@/constants/images';
+import { useAuthActions, useAuthState } from '@/store/auth';
 import type { FamilyCircleMember, FrequencyType, Investment } from '@/store/onboarding';
-import { useOnboardingActions, useOnboardingState } from '@/store/onboarding';
 import { getDayName } from '@/utils/get-day-name';
 import { getOrdinalDay } from '@/utils/get-ordinal-day';
 
 export default function Page() {
-  const { familyCircle } = useOnboardingState();
+  const { session } = useAuthState();
   const params = useLocalSearchParams<{ id: string }>();
-  const child = familyCircle.find((el) => el.id === Number(params.id));
+  const child = session?.children?.find((el) => el.id === Number(params.id));
 
   const { width } = useWindowDimensions();
   const [futureGoals, setFutureGoals] = useState<FutureGoal[]>(child?.futureGoals ?? []);
@@ -46,7 +46,7 @@ export default function Page() {
   const [familyCircleOpen, setFamilyCircleOpen] = useState(false);
   const [investmentOpen, setInvestmentOpen] = useState(false);
   const [confirmationOpen, setConfirmationOpen] = useState(false);
-  const { updateChildFamilyCircle, updateChildFutureGoals, updateChildInvestment } = useOnboardingActions();
+  const { updateChildFamilyCircle, updateChildFutureGoals, updateChildInvestment } = useAuthActions();
 
   if (!child) {
     return (
@@ -58,9 +58,9 @@ export default function Page() {
 
   const shareLink = `${env.DEEPLINK_URL}/invite/98972729u`;
 
-  const handleOnboardingSubmit = () => {
+  const handleSubmit = () => {
     updateChildInvestment(child.id, investment);
-    router.navigate('/(onboarding)/(children)/add-investment-options');
+    router.dismissTo('/(dashboard)/(add-flow)/family-circle');
   };
 
   return (
@@ -383,7 +383,7 @@ export default function Page() {
               fontWeight={500}
               onPress={() => {
                 setConfirmationOpen(false);
-                handleOnboardingSubmit();
+                handleSubmit();
               }}
             >
               Confirm
@@ -398,7 +398,7 @@ export default function Page() {
         mb="$6"
         onPress={() => {
           if (!investment) {
-            handleOnboardingSubmit();
+            handleSubmit();
           } else {
             setConfirmationOpen(true);
           }

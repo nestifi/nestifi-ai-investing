@@ -43,6 +43,11 @@ interface Actions {
     logout: () => Promise<void>;
     passWelcomeScreen: () => Promise<void>;
     finishOnboarding: (onboardingData: OnboardingState) => Promise<void>;
+    addChild: (child: Child) => Promise<void>;
+    removeChild: (childId: number) => Promise<void>;
+    updateChildFutureGoals: (childId: number, futureGoals: Child['futureGoals']) => Promise<void>;
+    updateChildFamilyCircle: (childId: number, familyCircle: Child['familyCircle']) => Promise<void>;
+    updateChildInvestment: (childId: number, investment: Child['investment']) => Promise<void>;
   };
 }
 
@@ -181,6 +186,63 @@ export const useAuthStore = createWithEqualityFn<AuthState & Actions>(
         } catch (error) {
           console.error('Unable to finish onboarding:', error);
         }
+      },
+      addChild: async (child) => {
+        const state = get();
+        if (!state.session) return;
+
+        const children = state.session?.children ?? [];
+        const childExists = children.some((existingChild) => existingChild.id === child.id);
+        if (childExists) return;
+
+        const updatedSession = { ...state.session, children: [...children, child] };
+        set(() => ({ session: updatedSession }));
+        await SecureStore.setItemAsync(USER_SESSION_KEY, JSON.stringify(updatedSession));
+      },
+      removeChild: async (childId) => {
+        const state = get();
+        if (!state.session) return;
+
+        const updatedSession = {
+          ...state.session,
+          children: state.session?.children?.filter((child) => child.id !== childId)
+        };
+        set(() => ({ session: updatedSession }));
+        await SecureStore.setItemAsync(USER_SESSION_KEY, JSON.stringify(updatedSession));
+      },
+      updateChildFutureGoals: async (childId, futureGoals) => {
+        const state = get();
+        if (!state.session) return;
+
+        const updatedSession = {
+          ...state.session,
+          children: state.session?.children?.map((child) => (child.id === childId ? { ...child, futureGoals } : child))
+        };
+        set(() => ({ session: updatedSession }));
+        await SecureStore.setItemAsync(USER_SESSION_KEY, JSON.stringify(updatedSession));
+      },
+      updateChildFamilyCircle: async (childId, familyCircle) => {
+        const state = get();
+        if (!state.session) return;
+
+        const updatedSession = {
+          ...state.session,
+          children: state.session?.children?.map((child) => (child.id === childId ? { ...child, familyCircle } : child))
+        };
+        set(() => ({ session: updatedSession }));
+        await SecureStore.setItemAsync(USER_SESSION_KEY, JSON.stringify(updatedSession));
+      },
+      updateChildInvestment: async (childId, investment) => {
+        const state = get();
+        if (!state.session) return;
+
+        const updatedSession = {
+          ...state.session,
+          children: state.session?.children?.map((child) => (child.id === childId ? { ...child, investment } : child))
+        };
+
+        await SecureStore.setItemAsync(USER_SESSION_KEY, JSON.stringify(updatedSession));
+        set(() => ({ session: updatedSession }));
       }
     }
   }),

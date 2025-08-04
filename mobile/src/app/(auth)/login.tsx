@@ -49,7 +49,10 @@ export default function LoginPage() {
               mb={8}
               placeholder="+1 (310) 000-00-00"
               value={value}
-              onChangeText={setValue}
+              onChangeText={(text) => {
+                const formattedText = text === '' || text.startsWith('+') ? text : `+${text}`;
+                setValue(formattedText);
+              }}
             />
           )}
           <Paragraph variant="secondary">

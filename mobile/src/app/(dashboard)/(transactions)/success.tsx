@@ -27,7 +27,7 @@ export default function Page() {
           color={COLORS.white}
           fontWeight={400}
           text="center"
-        >{`You've purchased ${typeof name === 'string' ? name : '-----'} shares on behalf of Dan Williams`}</Paragraph>
+        >{`You've purchased ${typeof name === 'string' ? name : '-----'} on behalf of Dan Williams`}</Paragraph>
         <XStack items="center">
           <SizableText color={COLORS.white} fontWeight={500} width={60}>
             TxHash:{' '}

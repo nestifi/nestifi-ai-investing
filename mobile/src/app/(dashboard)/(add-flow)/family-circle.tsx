@@ -10,7 +10,7 @@ import { Paragraph } from '@/components/paragraph';
 import { TouchableOpacityWithFeedback } from '@/components/touchable-opacity-with-feedback';
 import { COLORS } from '@/constants/colors';
 import { placeholderImageUri } from '@/constants/images';
-import { useOnboardingActions, useOnboardingState } from '@/store/onboarding';
+import { useAuthActions, useAuthState } from '@/store/auth';
 
 const DetailsRow = ({ label, value }: { label: string; value: string }) => (
   <YStack>
@@ -24,20 +24,28 @@ const DetailsRow = ({ label, value }: { label: string; value: string }) => (
 );
 
 export default function Page() {
-  const { removeChild } = useOnboardingActions();
-  const { familyCircle } = useOnboardingState();
+  const { session } = useAuthState();
+  const { removeChild } = useAuthActions();
 
   return (
     <BaseLayout minH="100%">
       <BackButton title="Family Circle" />
       <YStack gap={16} mb="$6">
-        {familyCircle.map((member) => (
+        {(session?.children ?? []).map((member) => (
           <XStack key={member.id} rounded={16} p={16} gap={12} bg={COLORS.accent[50]} position="relative">
             <YStack gap={12} flex={1} justify="center" items="center">
-              <Avatar circular size="$11">
-                <Avatar.Image src={member.photo ?? placeholderImageUri} />
-                <Avatar.Fallback backgroundColor={COLORS.accent[60]} />
-              </Avatar>
+              <TouchableOpacityWithFeedback
+                key={member.id}
+                activeOpacity={0.85}
+                onPress={() =>
+                  router.navigate({ pathname: '/(dashboard)/(add-flow)/profile', params: { id: member.id } })
+                }
+              >
+                <Avatar circular size="$11">
+                  <Avatar.Image src={member.photo ?? placeholderImageUri} />
+                  <Avatar.Fallback backgroundColor={COLORS.accent[60]} />
+                </Avatar>
+              </TouchableOpacityWithFeedback>
               <YStack>
                 <Paragraph text="center" color={COLORS.grey[100]}>
                   {member.firstName} {member.lastName}
@@ -78,11 +86,8 @@ export default function Page() {
         ))}
       </YStack>
       <YStack gap={12} mb="$6" mt="auto">
-        <Button variant="secondary" onPress={() => router.navigate('/(onboarding)/(children)/add-child')}>
+        <Button variant="primary" onPress={() => router.navigate('/(dashboard)/(add-flow)/add-child')}>
           Add child
-        </Button>
-        <Button variant="primary" onPress={() => router.navigate('/(onboarding)/(children)/add-investment-options')}>
-          Continue
         </Button>
       </YStack>
     </BaseLayout>

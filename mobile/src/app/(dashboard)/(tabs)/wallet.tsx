@@ -184,9 +184,10 @@ export default function WalletScreen() {
               secondValue="$10.000"
               change={-0.03}
               variant="bigger"
+              disabled
             />
-            <AssetRow name="US Dollar" icon={<USDIcon />} abbr="USD" value="$800" variant="bigger" />
-            <AssetRow name="USD Coin" icon={<USDCIcon />} abbr="USDC" value="$1000" variant="bigger" />
+            <AssetRow name="US Dollar" icon={<USDIcon />} abbr="USD" value="$800" variant="bigger" disabled />
+            <AssetRow name="USD Coin" icon={<USDCIcon />} abbr="USDC" value="$1000" variant="bigger" disabled />
           </YStack>
           <View>
             <H3 color={COLORS.grey[0]}>Products</H3>

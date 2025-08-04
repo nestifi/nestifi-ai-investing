@@ -1,10 +1,13 @@
 import { Check, ChevronDown, ChevronUp } from '@tamagui/lucide-icons';
 import type { SelectProps, SelectTriggerProps } from 'tamagui';
-import { Adapt, Select as TamaguiSelect, YStack, styled } from 'tamagui';
+import { Adapt, Select as TamaguiSelect, XStack, YStack, styled } from 'tamagui';
 
+import InfoIcon from '@/assets/icons/tooltip.svg';
 import { ErrorMessage } from '@/components/form/error-message';
 import { Label } from '@/components/form/label';
+import { TouchableOpacityWithFeedback } from '@/components/touchable-opacity-with-feedback';
 import { COLORS } from '@/constants/colors';
+import { zIndexes } from '@/constants/z-index';
 
 export const StyledTrigger = styled(TamaguiSelect.Trigger, {
   color: COLORS.grey[100],
@@ -21,6 +24,14 @@ export const StyledTrigger = styled(TamaguiSelect.Trigger, {
   }
 });
 
+type Option =
+  | string
+  | {
+      title: string;
+      icon: typeof InfoIcon | null;
+      tooltip?: boolean;
+    };
+
 export const Select = ({
   label,
   placeholder,
@@ -30,17 +41,21 @@ export const Select = ({
   inputProps,
   onChange,
   onBlur,
+  onTooltipPress,
   ...props
 }: Omit<SelectProps, 'onValueChange' | 'onOpenChange'> & {
   label: string;
   placeholder: string;
-  options: string[];
+  options: Option[];
   onChange: SelectProps['onValueChange'];
   onBlur: SelectProps['onOpenChange'];
+  onTooltipPress?: (item: Extract<Option, object>) => void;
   inputProps?: SelectTriggerProps;
   id?: string;
   errorMessage?: string;
 }) => {
+  const selectedOption = options.find((o) => (typeof o === 'string' ? o === props.value : o.title === props.value));
+
   return (
     <YStack gap="$1.5" flex={1}>
       <Label htmlFor={id} lineHeight={16 * 1.5}>
@@ -48,7 +63,12 @@ export const Select = ({
       </Label>
       <TamaguiSelect onValueChange={onChange} onOpenChange={onBlur} {...props}>
         <StyledTrigger flex={0} hasError={!!errorMessage} {...inputProps}>
-          <TamaguiSelect.Value color={props.value ? COLORS.grey[100] : COLORS.grey[50]} placeholder={placeholder} />
+          <XStack gap={8} items="center" justify="center">
+            {typeof selectedOption === 'object' && selectedOption.icon && (
+              <selectedOption.icon width={24} height={24} />
+            )}
+            <TamaguiSelect.Value color={props.value ? COLORS.grey[100] : COLORS.grey[50]} placeholder={placeholder} />
+          </XStack>
           <ChevronDown size={20} />
         </StyledTrigger>
         <Adapt platform="touch">
@@ -58,7 +78,7 @@ export const Select = ({
             snapPoints={['fit']}
             snapPointsMode="fit"
             animation="medium"
-            zIndex={1_000_000}
+            zIndex={zIndexes.select}
           >
             <TamaguiSelect.Sheet.Frame>
               <TamaguiSelect.Sheet.ScrollView contentContainerStyle={{ justify: 'center', items: 'center', pb: 64 }}>
@@ -83,19 +103,53 @@ export const Select = ({
             <TamaguiSelect.Group>
               <TamaguiSelect.Label>{label}</TamaguiSelect.Label>
               {options.map((item, i) => {
+                if (typeof item === 'string') {
+                  return (
+                    <TamaguiSelect.Item
+                      index={i}
+                      px="$4"
+                      py="$3"
+                      borderBottomWidth={1}
+                      key={item}
+                      value={item}
+                      pressStyle={{
+                        bg: COLORS.grey[10]
+                      }}
+                    >
+                      <TamaguiSelect.ItemText>{item}</TamaguiSelect.ItemText>
+                      <TamaguiSelect.ItemIndicator marginLeft="auto">
+                        <Check size={16} />
+                      </TamaguiSelect.ItemIndicator>
+                    </TamaguiSelect.Item>
+                  );
+                }
+
                 return (
                   <TamaguiSelect.Item
                     index={i}
                     px="$4"
                     py="$3"
                     borderBottomWidth={1}
-                    key={item}
+                    key={item.title}
+                    value={item.title}
                     pressStyle={{
                       bg: COLORS.grey[10]
                     }}
-                    value={item}
                   >
-                    <TamaguiSelect.ItemText>{item}</TamaguiSelect.ItemText>
+                    <XStack gap={8} items="center">
+                      {item.icon && <item.icon width={24} height={24} />}
+                      <TamaguiSelect.ItemText>{item.title}</TamaguiSelect.ItemText>
+                      {item.tooltip === true && (
+                        <TouchableOpacityWithFeedback
+                          onPress={(e) => {
+                            e.stopPropagation();
+                            onTooltipPress?.(item);
+                          }}
+                        >
+                          <InfoIcon width={16} height={16} />
+                        </TouchableOpacityWithFeedback>
+                      )}
+                    </XStack>
                     <TamaguiSelect.ItemIndicator marginLeft="auto">
                       <Check size={16} />
                     </TamaguiSelect.ItemIndicator>

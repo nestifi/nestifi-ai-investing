@@ -18,7 +18,7 @@ import { Paragraph } from '@/components/paragraph';
 import { TouchableOpacityWithFeedback } from '@/components/touchable-opacity-with-feedback';
 import { COLORS } from '@/constants/colors';
 import { childAvatarImageUri, childAvatar2ImageUri } from '@/constants/images';
-import { useOnboardingActions, useOnboardingState } from '@/store/onboarding';
+import { useAuthActions, useAuthState } from '@/store/auth';
 
 const schema = z.object({
   firstName: z.string().min(1, { error: 'First name is required' }),
@@ -36,8 +36,8 @@ const genderOptions = ['Male', 'Female', 'Other'];
 
 export default function Page() {
   const [photo, setPhoto] = useState<string | null>(null);
-  const { familyCircle } = useOnboardingState();
-  const { addChild } = useOnboardingActions();
+  const { session } = useAuthState();
+  const { addChild } = useAuthActions();
   const form = useForm<AddChildForm>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -51,7 +51,7 @@ export default function Page() {
     }
   });
 
-  const id = familyCircle.length;
+  const id = session?.children?.length ?? 0;
   const imageUri = id > 0 ? childAvatar2ImageUri : childAvatarImageUri;
 
   const onSubmit: SubmitHandler<AddChildForm> = async (data) => {
@@ -70,7 +70,12 @@ export default function Page() {
       investment: null
     });
 
-    router.navigate('/(onboarding)/(children)/family-circle');
+    router.navigate({
+      pathname: '/(dashboard)/(add-flow)/profile',
+      params: {
+        id
+      }
+    });
   };
 
   const onInvalid: SubmitErrorHandler<AddChildForm> = (errors) => {
@@ -96,7 +101,7 @@ export default function Page() {
 
   return (
     <BaseLayout minH="100%">
-      <BackButton title="Child's Details" onTitlePress={fillWithDefaults} />
+      <BackButton title="Add child" onTitlePress={fillWithDefaults} />
       <Paragraph>Add personal information of the child you want to invest in.</Paragraph>
       <YStack gap={8} items="center" my={16}>
         {photo ? (
